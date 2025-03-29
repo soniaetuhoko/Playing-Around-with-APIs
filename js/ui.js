@@ -19,11 +19,16 @@ class UiService {
      * Initialize event listeners for UI elements
      */
     initializeEventListeners() {
-        // Navigation menu
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', this.handleNavigation.bind(this));
-        });
+        // Navigation buttons
+        const searchTab = document.getElementById('searchTab');
+        const journalTab = document.getElementById('journalTab');
+        const statsTab = document.getElementById('statsTab');
+        const settingsTab = document.getElementById('settingsTab');
+
+        if (searchTab) searchTab.addEventListener('click', () => this.showSection('search'));
+        if (journalTab) journalTab.addEventListener('click', () => this.showSection('journal'));
+        if (statsTab) statsTab.addEventListener('click', () => this.showSection('stats'));
+        if (settingsTab) settingsTab.addEventListener('click', () => this.showSection('settings'));
 
         // Search functionality
         const searchBtn = document.getElementById('searchBtn');
@@ -148,16 +153,6 @@ class UiService {
     }
 
     /**
-     * Handle navigation menu clicks
-     * @param {Event} event - The click event
-     */
-    handleNavigation(event) {
-        event.preventDefault();
-        const section = event.target.dataset.section;
-        this.showSection(section);
-    }
-
-    /**
      * Show a specific section and hide others
      * @param {string} sectionId - The ID of the section to show
      */
@@ -174,12 +169,12 @@ class UiService {
             targetSection.classList.add('active');
         }
 
-        // Update active nav link
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.dataset.section === sectionId) {
-                link.classList.add('active');
+        // Update active nav buttons
+        const navButtons = document.querySelectorAll('.nav-btn');
+        navButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.id === `${sectionId}Tab`) {
+                btn.classList.add('active');
             }
         });
 
@@ -792,7 +787,6 @@ class UiService {
         const proteinGoal = parseInt(document.getElementById('proteinGoal').value) || 150;
         const carbsGoal = parseInt(document.getElementById('carbsGoal').value) || 200;
         const fatGoal = parseInt(document.getElementById('fatGoal').value) || 65;
-        const spoonacularApiKey = document.getElementById('spoonacularApiKey').value;
         
         const settings = {
             userName,
@@ -808,10 +802,9 @@ class UiService {
         
         // This will be bound to the App.handleSaveSettings method in App.connectUIEvents
         console.log('Settings being saved:', settings);
-        console.log('API Key:', spoonacularApiKey);
         
-        // Pass all data to the app
-        return { settings, spoonacularApiKey };
+        // Pass settings to the app
+        return { settings };
     }
 
     /**

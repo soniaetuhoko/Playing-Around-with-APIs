@@ -9,40 +9,7 @@ class ApiService {
      * @constructor
      */
     constructor() {
-        this.loadApiKeys();
-    }
-
-    /**
-     * Load API keys from local storage
-     */
-    loadApiKeys() {
-        const storedKeys = localStorage.getItem(CONFIG.STORAGE_KEYS.API_KEYS);
-        if (storedKeys) {
-            const keys = JSON.parse(storedKeys);
-            if (keys.SPOONACULAR) {
-                CONFIG.API_KEYS.SPOONACULAR = keys.SPOONACULAR;
-            }
-        }
-    }
-
-    /**
-     * Set a new API key
-     * @param {string} apiName - The name of the API (e.g., 'SPOONACULAR')
-     * @param {string} key - The API key
-     */
-    setApiKey(apiName, key) {
-        if (CONFIG.API_KEYS.hasOwnProperty(apiName)) {
-            CONFIG.API_KEYS[apiName] = key;
-            
-            // Store in local storage
-            const storedKeys = localStorage.getItem(CONFIG.STORAGE_KEYS.API_KEYS) || '{}';
-            const keys = JSON.parse(storedKeys);
-            keys[apiName] = key;
-            localStorage.setItem(CONFIG.STORAGE_KEYS.API_KEYS, JSON.stringify(keys));
-            
-            return true;
-        }
-        return false;
+        // No need to load API keys from storage anymore
     }
 
     /**
@@ -76,7 +43,7 @@ class ApiService {
      */
     async searchSpoonacularRecipes(query, params = {}) {
         if (!CONFIG.API_KEYS.SPOONACULAR) {
-            throw new Error('Spoonacular API key is required. Please set it in the settings.');
+            throw new Error('Spoonacular API key is required. Please check your environment variables.');
         }
 
         const searchParams = new URLSearchParams({

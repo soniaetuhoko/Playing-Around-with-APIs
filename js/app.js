@@ -11,6 +11,7 @@ class App {
         this.uiService = new UiService();
         this.journalService = new JournalService(this.storageService);
         this.statsService = new StatsService(this.storageService);
+        this.themeService = new ThemeService();
         
         // Connect UI events to handlers
         this.connectUIEvents();

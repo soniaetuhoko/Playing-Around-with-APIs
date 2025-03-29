@@ -3,22 +3,30 @@
  * This stylesheet contains all the styles for the Meal Nutrition Tracker application
  */
 
-/* ---------- Global Styles ---------- */
+/* CSS Variables for Light Theme */
 :root {
-    /* Color palette */
+    /* Colors */
     --primary-color: #4CAF50;
     --primary-dark: #388E3C;
-    --primary-light: #C8E6C9;
-    --accent-color: #FF5722;
-    --text-primary: #212121;
-    --text-secondary: #757575;
-    --divider-color: #BDBDBD;
-    --background-color: #F5F5F5;
-    --white: #FFFFFF;
-    --danger: #F44336;
-    --warning: #FFC107;
-    --success: #4CAF50;
-    --info: #2196F3;
+    --secondary-color: #2196F3;
+    --accent-color: #FFC107;
+    --text-color: #333333;
+    --text-light: #666666;
+    --background-color: #f5f5f5;
+    --surface-color: #ffffff;
+    --border-color: #e0e0e0;
+    --divider-color: #e0e0e0;
+    --error-color: #f44336;
+    --success-color: #4CAF50;
+    --warning-color: #FFC107;
+    --info-color: #2196F3;
+    
+    /* Shadows */
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --box-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    /* Transitions */
+    --transition-speed: 0.3s;
     
     /* Typography */
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,12 +42,30 @@
     --border-radius-sm: 4px;
     --border-radius-md: 8px;
     --border-radius-lg: 12px;
-    
-    /* Box shadow */
-    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    --box-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+/* Dark Theme Variables */
+body.dark-mode {
+    --primary-color: #66BB6A;
+    --primary-dark: #4CAF50;
+    --secondary-color: #64B5F6;
+    --accent-color: #FFD54F;
+    --text-color: #ffffff;
+    --text-light: #b0b0b0;
+    --background-color: #121212;
+    --surface-color: #1e1e1e;
+    --border-color: #333333;
+    --divider-color: #333333;
+    --error-color: #ef5350;
+    --success-color: #66BB6A;
+    --warning-color: #FFD54F;
+    --info-color: #64B5F6;
+    
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --box-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -48,9 +74,10 @@
 
 body {
     font-family: var(--font-family);
-    color: var(--text-primary);
-    background-color: var(--background-color);
     line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 .container {
@@ -109,7 +136,7 @@ p {
 
 /* ---------- Header ---------- */
 header {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     box-shadow: var(--box-shadow);
     padding: var(--spacing-md) 0;
     position: sticky;
@@ -125,11 +152,17 @@ header .container {
 
 header h1 {
     margin-bottom: 0;
-    color: var(--primary-color);
+    color: var(--text-color);
 }
 
 header h1 i {
     margin-right: var(--spacing-sm);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 nav ul {
@@ -141,7 +174,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: var(--text-secondary);
+    color: var(--text-color);
     font-weight: 500;
     padding: var(--spacing-sm) 0;
     position: relative;
@@ -199,14 +232,16 @@ main {
 .search-box input {
     flex: 1;
     padding: var(--spacing-md);
-    border: 1px solid var(--divider-color);
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
     font-size: 1rem;
+    background-color: var(--surface-color);
+    color: var(--text-color);
 }
 
 .search-box button {
     background-color: var(--primary-color);
-    color: var(--white);
+    color: white;
     border: none;
     padding: 0 var(--spacing-lg);
     border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
@@ -225,9 +260,11 @@ main {
 
 .api-selector select {
     padding: var(--spacing-sm);
-    border: 1px solid var(--divider-color);
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sm);
     font-size: 1rem;
+    background-color: var(--surface-color);
+    color: var(--text-color);
 }
 
 .search-results {
@@ -238,11 +275,11 @@ main {
 }
 
 .meal-card {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     border-radius: var(--border-radius-md);
     overflow: hidden;
     box-shadow: var(--box-shadow);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
     cursor: pointer;
 }
 
@@ -264,10 +301,11 @@ main {
 .meal-card-content h3 {
     margin-bottom: var(--spacing-sm);
     font-size: 1.2rem;
+    color: var(--text-color);
 }
 
 .meal-details {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     border-radius: var(--border-radius-md);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
@@ -315,8 +353,8 @@ main {
 }
 
 .meal-tag {
-    background-color: var(--primary-light);
-    color: var(--primary-dark);
+    background-color: var(--primary-color);
+    color: white;
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--border-radius-sm);
     font-size: 0.9rem;
@@ -341,7 +379,7 @@ main {
 
 .nutrition-item h4 {
     margin-bottom: var(--spacing-xs);
-    color: var(--text-secondary);
+    color: var(--text-color);
     font-size: 0.9rem;
 }
 
@@ -408,7 +446,7 @@ main {
 }
 
 .nutrition-card {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     padding: var(--spacing-md);
     border-radius: var(--border-radius-md);
     box-shadow: var(--box-shadow);
@@ -416,7 +454,7 @@ main {
 }
 
 .nutrition-card h4 {
-    color: var(--text-secondary);
+    color: var(--text-color);
     margin-bottom: var(--spacing-xs);
 }
 
@@ -434,7 +472,7 @@ main {
 }
 
 .meal-category {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     border-radius: var(--border-radius-md);
     padding: var(--spacing-md);
     box-shadow: var(--box-shadow);
@@ -479,7 +517,7 @@ main {
 
 .meal-item-info p {
     font-size: 0.9rem;
-    color: var(--text-secondary);
+    color: var(--text-color);
     margin-bottom: 0;
 }
 
@@ -491,20 +529,20 @@ main {
 .meal-item-actions button {
     background: none;
     border: none;
-    color: var(--text-secondary);
+    color: var(--text-color);
     font-size: 0.9rem;
     padding: var(--spacing-xs);
 }
 
 .meal-item-actions button:hover {
-    color: var(--danger);
+    color: var(--error-color);
 }
 
 .add-meal-btn {
     width: 100%;
     padding: var(--spacing-sm);
-    background-color: var(--primary-light);
-    color: var(--primary-dark);
+    background-color: var(--primary-color);
+    color: white;
     border: none;
     border-radius: var(--border-radius-sm);
     font-weight: 500;
@@ -512,8 +550,7 @@ main {
 }
 
 .add-meal-btn:hover {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: var(--primary-dark);
 }
 
 /* ---------- Stats Section ---------- */
@@ -544,9 +581,8 @@ main {
     border-color: var(--primary-color);
 }
 
-
 .stats-summary {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     border-radius: var(--border-radius-md);
     padding: var(--spacing-lg);
     box-shadow: var(--box-shadow);
@@ -568,7 +604,7 @@ main {
 }
 
 .stat-card h4 {
-    color: var(--text-secondary);
+    color: var(--text-color);
     margin-bottom: var(--spacing-xs);
 }
 
@@ -581,7 +617,7 @@ main {
 
 /* ---------- Settings Section ---------- */
 .settings-form {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     border-radius: var(--border-radius-md);
     padding: var(--spacing-lg);
     box-shadow: var(--box-shadow);
@@ -606,14 +642,16 @@ main {
 .form-row select {
     flex: 1;
     padding: var(--spacing-sm);
-    border: 1px solid var(--divider-color);
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sm);
     font-size: 1rem;
+    background-color: var(--surface-color);
+    color: var(--text-color);
 }
 
 .primary-btn {
     background-color: var(--primary-color);
-    color: var(--white);
+    color: white;
     border: none;
     padding: var(--spacing-sm) var(--spacing-lg);
     border-radius: var(--border-radius-sm);
@@ -627,8 +665,8 @@ main {
 }
 
 .danger-btn {
-    background-color: var(--danger);
-    color: var(--white);
+    background-color: var(--error-color);
+    color: white;
     border: none;
     padding: var(--spacing-sm) var(--spacing-lg);
     border-radius: var(--border-radius-sm);
@@ -637,12 +675,12 @@ main {
 }
 
 .danger-btn:hover {
-    background-color: #D32F2F;
+    background-color: #d32f2f;
 }
 
 .secondary-btn {
     background-color: var(--divider-color);
-    color: var(--text-primary);
+    color: var(--text-color);
     border: none;
     padding: var(--spacing-sm) var(--spacing-lg);
     border-radius: var(--border-radius-sm);
@@ -674,7 +712,7 @@ main {
 }
 
 .modal-content {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     border-radius: var(--border-radius-md);
     padding: var(--spacing-lg);
     max-width: 600px;
@@ -690,7 +728,7 @@ main {
     right: var(--spacing-md);
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--text-secondary);
+    color: var(--text-color);
 }
 
 .modal-search {
@@ -701,13 +739,15 @@ main {
 .modal-search input {
     flex: 1;
     padding: var(--spacing-sm);
-    border: 1px solid var(--divider-color);
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+    background-color: var(--surface-color);
+    color: var(--text-color);
 }
 
 .modal-search button {
     background-color: var(--primary-color);
-    color: var(--white);
+    color: white;
     border: none;
     padding: 0 var(--spacing-md);
     border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
@@ -738,7 +778,7 @@ main {
 
 /* ---------- Footer ---------- */
 footer {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     padding: var(--spacing-md) 0;
     text-align: center;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
@@ -746,11 +786,11 @@ footer {
 
 footer p {
     margin-bottom: 0;
-    color: var(--text-secondary);
+    color: var(--text-color);
 }
 
 footer i {
-    color: var(--danger);
+    color: var(--error-color);
 }
 
 /* ---------- Responsive ---------- */
@@ -811,7 +851,7 @@ footer i {
     }
 } 
 .chart-container {
-    background-color: var(--white);
+    background-color: var(--surface-color);
     border-radius: var(--border-radius-md);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
@@ -847,4 +887,41 @@ footer i {
     background-color: var(--primary-color);
     color: var(--white);
     border-color: var(--primary-color);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color var(--transition-speed);
+    margin-right: var(--spacing-md);
+}
+
+.theme-toggle:hover {
+    background-color: var(--divider-color);
+}
+
+/* Navigation Styles */
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color var(--transition-speed);
+}
+
+.nav-btn:hover {
+    background-color: var(--divider-color);
+}
+
+.nav-btn.active {
+    background-color: var(--primary-color);
+    color: white;
 }

@@ -1,84 +1,45 @@
 # Meal Nutrition Tracker
 
-A web application that allows users to track their meal nutrition using data from various food APIs.
+A web-based application that helps users track their daily meals and nutrition information using the Spoonacular API. This application allows users to search for recipes, view detailed nutritional information, and maintain a food journal.
 
 ## Features
 
-- Search for meals, recipes, and drinks from multiple sources:
-  - TheMealDB
-  - TheCocktailDB
-  - Spoonacular (requires API key)
-- View detailed information about meals including ingredients and instructions
-- Track daily nutrition intake with a food journal
-- Organize meals by breakfast, lunch, dinner, and snacks
-- View nutrition statistics over time (weekly, monthly, yearly)
-- Set and track progress towards nutrition goals
-- Persistent data storage using localStorage
-
-## Technologies Used
-
-- HTML5
-- CSS3 (with responsive design)
-- JavaScript (ES6+)
-- Chart.js for statistics visualization
-- Font Awesome for icons
-- LocalStorage API for data persistence
-- External APIs:
-  - TheMealDB API
-  - TheCocktailDB API
-  - Spoonacular API
+- 🔍 Recipe Search: Search through thousands of recipes using Spoonacular API
+- 📊 Nutrition Information: Get detailed nutrition facts for any recipe
+- 📝 Food Journal: Track daily meals and nutrition intake
+- 📈 Statistics: View nutrition trends over time
+- 🎯 Goal Setting: Set and track personal nutrition goals
+- 📱 Responsive Design: Works on desktop and mobile devices
 
 ## Getting Started
 
 ### Prerequisites
 
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- Internet connection to access external APIs
-- Spoonacular API key (optional, for additional features)
+- Modern web browser (Chrome, Firefox, Safari, or Edge)
+- Text editor for configuration
+- Spoonacular API key (get one at [Spoonacular's website](https://spoonacular.com/food-api))
 
 ### Installation
 
-1. Clone or download this repository
-2. Open `index.html` in your web browser
-3. For full functionality, obtain a Spoonacular API key and add it in the Settings section
+1. Clone the repository:
+```bash
+git clone https://github.com/soniaetuhoko/Playing-Around-with-APIs.git
+cd meal-nutrition-tracker
+```
 
-## API Keys
+2. Create a `js/env.js` file and add your Spoonacular API key:
+```javascript
+const ENV = {
+    SPOONACULAR_API_KEY: 'your_api_key_here'
+};
+```
 
-- **TheMealDB** and **TheCocktailDB**: Free tier API keys are included and ready to use
-- **Spoonacular**: You'll need to [register for a Spoonacular API key](https://spoonacular.com/food-api/console#Dashboard) and add it in the application settings
+3. Open `index.html` in your web browser.
 
-## Usage
+### Configuration
 
-### Searching for Food
-
-1. Navigate to the "Search" tab
-2. Select your preferred data source (TheMealDB, TheCocktailDB, or Spoonacular)
-3. Enter your search query and press Enter or click the search button
-4. Click on a result to view detailed information
-5. From the details view, you can add the item to your food journal
-
-### Food Journal
-
-1. Navigate to the "Food Journal" tab
-2. Use the date navigation to select a specific date
-3. Add meals to your journal by clicking "Add Food" in any meal category
-4. View your total nutrition intake for the day
-5. Remove items from your journal as needed
-
-### Statistics
-
-1. Navigate to the "Statistics" tab
-2. Select your preferred time period (week, month, or year)
-3. View charts showing your nutrition intake over time
-4. See average daily nutrition values
-
-### Settings
-
-1. Navigate to the "Settings" tab
-2. Enter your personal information and nutrition goals
-3. Add your Spoonacular API key for additional functionality
-4. Save your settings
-5. Clear all data if needed (use with caution)
+1. Set your nutrition goals in the Settings panel
+2. Your data will be automatically saved in the browser's local storage
 
 ## Project Structure
 
@@ -86,47 +47,79 @@ A web application that allows users to track their meal nutrition using data fro
 meal-nutrition-tracker/
 ├── index.html           # Main HTML file
 ├── css/
-│   └── styles.css       # Main stylesheet
+│   └── styles.css      # Main stylesheet
 ├── js/
-│   ├── config.js        # Configuration and constants
-│   ├── api.js           # API service for external data
-│   ├── storage.js       # Local storage service
-│   ├── ui.js            # UI interaction handling
-│   ├── journal.js       # Food journal functionality
-│   ├── stats.js         # Statistics and charts
-│   └── app.js           # Main application logic
-└── README.md            # This documentation file
+│   ├── env.js          # Environment variables (API keys)
+│   ├── config.js       # Application configuration
+│   ├── api.js          # API service
+│   ├── storage.js      # Local storage service
+│   ├── ui.js          # UI handling
+│   ├── journal.js      # Food journal functionality
+│   ├── stats.js        # Statistics and charts
+│   └── app.js         # Main application logic
+└── README.md           # This file
 ```
 
-## API Information
+## Usage
 
-### TheMealDB
+### Searching for Recipes
 
-- Free API with a wide range of meal recipes
-- Provides ingredients, instructions, and images
-- Does not provide nutrition information
+1. Enter a search term in the main search bar
+2. Click the search button or press Enter
+3. Browse through the results
+4. Click on any recipe to view detailed information
 
-### TheCocktailDB
+### Managing Your Food Journal
 
-- Free API with drink recipes
-- Provides ingredients, instructions, and images
-- Does not provide nutrition information
+1. Navigate to the Journal section
+2. Use the date picker to select a date
+3. Add meals to your journal from search results
+4. View your daily nutrition totals
+5. Remove meals as needed
 
-### Spoonacular
+### Viewing Statistics
 
-- Comprehensive food API with detailed nutrition information
-- Requires an API key
-- Provides detailed nutrition breakdown
-- Limited number of requests on the free plan
+1. Go to the Statistics section
+2. Select your preferred time period
+3. View charts showing your nutrition intake over time
+
+## Security
+
+- The Spoonacular API key is stored in `js/env.js` and should never be committed to version control
+- All user data is stored locally in the browser
+- No sensitive data is transmitted to external servers except for API requests
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## Built With
+
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- [Chart.js](https://www.chartjs.org/) - For statistics visualization
+- [Spoonacular API](https://spoonacular.com/food-api) - Food and recipe data
+- [Font Awesome](https://fontawesome.com/) - Icons
 
 ## License
 
-This project is released under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgements
+## Acknowledgments
 
-- [TheMealDB](https://www.themealdb.com/) for their free meal database API
-- [TheCocktailDB](https://www.thecocktaildb.com/) for their free cocktail database API
-- [Spoonacular](https://spoonacular.com/food-api) for their comprehensive food API
-- [Chart.js](https://www.chartjs.org/) for the charting library
-- [Font Awesome](https://fontawesome.com/) for icons 
+- Spoonacular API for providing comprehensive food and recipe data
+- Chart.js team for the charting library
+- Font Awesome for the icons
+
+## Support
+
+For support, please open an issue in the GitHub repository or contact the maintainers.
+
+## Privacy
+
+This application stores all user data locally in your browser. No personal information is collected or transmitted to external servers except for recipe searches through the Spoonacular API. 

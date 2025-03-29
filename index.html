@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meal Nutrition Tracker</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta name="description" content="Track your meal nutrition with this easy-to-use application">
 </head>
-<body>
+<body class="light-mode">
     <header>
         <div class="container">
             <h1><i class="fas fa-utensils"></i> Meal Nutrition Tracker</h1>
             <nav>
-                <ul>
-                    <li><a href="#" class="active" data-section="search">Search</a></li>
-                    <li><a href="#" data-section="journal">Food Journal</a></li>
-                    <li><a href="#" data-section="stats">Statistics</a></li>
-                    <li><a href="#" data-section="settings">Settings</a></li>
-                </ul>
+                <button id="themeToggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="searchTab" class="nav-btn active">Search</button>
+                <button id="journalTab" class="nav-btn">Journal</button>
+                <button id="statsTab" class="nav-btn">Statistics</button>
+                <button id="settingsTab" class="nav-btn">Settings</button>
             </nav>
         </div>
     </header>
@@ -178,14 +179,6 @@
                         </div>
                     </div>
                     
-                    <div class="setting-group">
-                        <h3>API Settings</h3>
-                        <div class="form-row">
-                            <label for="spoonacularApiKey">Spoonacular API Key:</label>
-                            <input type="text" id="spoonacularApiKey">
-                        </div>
-                    </div>
-                    
                     <button id="saveSettings" class="primary-btn">Save Settings</button>
                     <button id="clearData" class="danger-btn">Clear All Data</button>
                 </div>
@@ -227,12 +220,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- JavaScript Files -->
+    <script src="js/env.js"></script>
     <script src="js/config.js"></script>
     <script src="js/api.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/journal.js"></script>
     <script src="js/stats.js"></script>
+    <script src="js/theme.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html> 

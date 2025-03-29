@@ -51,16 +51,15 @@ const CONFIG = {
         }
     },
     
-    // Default API Keys
+    // API Keys loaded from environment variables
     API_KEYS: {
-        SPOONACULAR: '', // User needs to provide their own key
+        SPOONACULAR: ENV.SPOONACULAR_API_KEY || '',
         CALORIENINJAS: '' // User needs to provide their own key
     },
     
     // Local Storage Keys
     STORAGE_KEYS: {
         USER_SETTINGS: 'mealTracker_userSettings',
-        API_KEYS: 'mealTracker_apiKeys',
         JOURNAL_DATA: 'mealTracker_journalData',
         MEAL_HISTORY: 'mealTracker_mealHistory'
     },
