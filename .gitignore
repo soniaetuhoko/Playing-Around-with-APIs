@@ -1,6 +1,5 @@
 # Ignore environment variables
 .env
-env.js
 
 # Node.js dependencies
 node_modules/
