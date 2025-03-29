@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Nutrition Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Track your meal nutrition with this easy-to-use application">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-utensils"></i> Meal Nutrition Tracker</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" data-section="search">Search</a></li>
+                    <li><a href="#" data-section="journal">Food Journal</a></li>
+                    <li><a href="#" data-section="stats">Statistics</a></li>
+                    <li><a href="#" data-section="settings">Settings</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Search Section -->
+            <section id="search" class="section active">
+                <h2>Find Food & Nutrition Information</h2>
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search for a meal or ingredient...">
+                        <button id="searchBtn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="api-selector">
+                        <label for="apiSelect">Data Source:</label>
+                        <select id="apiSelect">
+                            <option value="spoonacular">Spoonacular</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                
+                <div class="search-results" id="searchResults"></div>
+                
+                <div id="mealDetails" class="meal-details"></div>
+            </section>
+
+            <!-- Food Journal Section -->
+            <section id="journal" class="section">
+                <h2>Food Journal</h2>
+                <div class="date-selector">
+                    <button id="prevDay"><i class="fas fa-chevron-left"></i></button>
+                    <h3 id="currentDate">Today</h3>
+                    <button id="nextDay"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="journal-summary">
+                    <div class="nutrition-card">
+                        <h4>Calories</h4>
+                        <p id="totalCalories">0</p>
+                    </div>
+                    <div class="nutrition-card">
+                        <h4>Protein</h4>
+                        <p id="totalProtein">0g</p>
+                    </div>
+                    <div class="nutrition-card">
+                        <h4>Carbs</h4>
+                        <p id="totalCarbs">0g</p>
+                    </div>
+                    <div class="nutrition-card">
+                        <h4>Fat</h4>
+                        <p id="totalFat">0g</p>
+                    </div>
+                </div>
+                
+                <div class="meal-categories">
+                    <div class="meal-category" id="breakfast">
+                        <h3>Breakfast</h3>
+                        <div class="meal-items"></div>
+                        <button class="add-meal-btn" data-meal="breakfast">+ Add Food</button>
+                    </div>
+                    <div class="meal-category" id="lunch">
+                        <h3>Lunch</h3>
+                        <div class="meal-items"></div>
+                        <button class="add-meal-btn" data-meal="lunch">+ Add Food</button>
+                    </div>
+                    <div class="meal-category" id="dinner">
+                        <h3>Dinner</h3>
+                        <div class="meal-items"></div>
+                        <button class="add-meal-btn" data-meal="dinner">+ Add Food</button>
+                    </div>
+                    <div class="meal-category" id="snacks">
+                        <h3>Snacks</h3>
+                        <div class="meal-items"></div>
+                        <button class="add-meal-btn" data-meal="snacks">+ Add Food</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section id="stats" class="section">
+                <h2>Nutrition Statistics</h2>
+                <div class="stats-period">
+                    <button class="period-btn active" data-period="week">Week</button>
+                    <button class="period-btn" data-period="month">Month</button>
+                    <button class="period-btn" data-period="year">Year</button>
+                </div>
+                
+                
+                <div class="stats-summary">
+                    <h3>Average Daily Intake</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h4>Calories</h4>
+                            <p id="avgCalories">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Protein</h4>
+                            <p id="avgProtein">0g</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Carbs</h4>
+                            <p id="avgCarbs">0g</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Fat</h4>
+                            <p id="avgFat">0g</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="section">
+                <h2>Settings</h2>
+                <div class="settings-form">
+                    <div class="setting-group">
+                        <h3>User Information</h3>
+                        <div class="form-row">
+                            <label for="userName">Name:</label>
+                            <input type="text" id="userName">
+                        </div>
+                        <div class="form-row">
+                            <label for="userAge">Age:</label>
+                            <input type="number" id="userAge" min="1" max="120">
+                        </div>
+                        <div class="form-row">
+                            <label for="userGender">Gender:</label>
+                            <select id="userGender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <h3>Nutrition Goals</h3>
+                        <div class="form-row">
+                            <label for="calorieGoal">Daily Calorie Goal:</label>
+                            <input type="number" id="calorieGoal" min="0">
+                        </div>
+                        <div class="form-row">
+                            <label for="proteinGoal">Protein Goal (g):</label>
+                            <input type="number" id="proteinGoal" min="0">
+                        </div>
+                        <div class="form-row">
+                            <label for="carbsGoal">Carbs Goal (g):</label>
+                            <input type="number" id="carbsGoal" min="0">
+                        </div>
+                        <div class="form-row">
+                            <label for="fatGoal">Fat Goal (g):</label>
+                            <input type="number" id="fatGoal" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <h3>API Settings</h3>
+                        <div class="form-row">
+                            <label for="spoonacularApiKey">Spoonacular API Key:</label>
+                            <input type="text" id="spoonacularApiKey">
+                        </div>
+                    </div>
+                    
+                    <button id="saveSettings" class="primary-btn">Save Settings</button>
+                    <button id="clearData" class="danger-btn">Clear All Data</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Meal Nutrition Tracker | Made with <i class="fas fa-heart"></i> by Sonia</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="addMealModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Add Food to <span id="mealTypeLabel">Meal</span></h2>
+            <div class="modal-search">
+                <input type="text" id="modalSearchInput" placeholder="Search for a food...">
+                <button id="modalSearchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <div id="modalSearchResults" class="modal-search-results"></div>
+        </div>
+    </div>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <h2>Are you sure?</h2>
+            <p id="confirmationMessage">This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button id="confirmYes" class="danger-btn">Yes</button>
+                <button id="confirmNo" class="secondary-btn">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js for statistics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- JavaScript Files -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/journal.js"></script>
+    <script src="js/stats.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html> 
